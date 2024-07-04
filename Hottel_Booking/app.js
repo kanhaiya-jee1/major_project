@@ -7,7 +7,6 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./Utils/ExpressError.js");
 
-
 const listings = require("./routes/listing.js");
 const reviews = require("./models/review.js");
 
@@ -36,31 +35,21 @@ app.get("/", (req, res) => {
   res.send("Hi, I am root");
 });
 
-
-app.use("/listings",listings);
-app.use("/listings/:id/reviews",reviews);  //parent route
-
-
-
-
-
-
-
+app.use("/listings", listings);
+app.use("/listings/:id/reviews", reviews); //parent route
 
 //  Error handler  (Middleware)
 
-
 // Agar koi user koi aise hmare hi domain k kisisi random route k pass request jati h to page nhi hoga (kisi se match nhi hua to hm page not to hm standerd response send krna chate h )
-app.all("*",(req,res,next)=> {
-  next(new ExpressError(404,"page Not Found"));
+app.all("*", (req, res, next) => {
+  next(new ExpressError(404, "page Not Found"));
 });
 
-app.use((err,req,res,next) => {
-  let {statusCode, message = "Something went wrong!"} = err;
+app.use((err, req, res, next) => {
+  let { statusCode, message = "Something went wrong!" } = err;
   // res.render("error.ejs");
   res.status(statusCode).send(message);
 });
-
 
 app.listen(8080, () => {
   console.log("server is listining to port 8080");
