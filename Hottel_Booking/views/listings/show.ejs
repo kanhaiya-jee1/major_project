@@ -37,7 +37,7 @@
 
     <h4>Leave a fgkmReview</h4>
     <form
-      action="/listings/<%=listing._id%>/reviews"
+      action="/listings/<%= listing._id %>/reviews"
       method="POST"
       novalidate
       class="needs-validation">
@@ -46,6 +46,8 @@
         <input
           type="range"
           min="1"
+          max="5"
+          value="3"
           id="rating"
           name="review[rating]"
           class="form-range" />
@@ -59,7 +61,7 @@
           rows="5"
           class="form-control"
           required></textarea>
-        <div class="invalid-feedback">Please add some coments for reviews</div>
+        <div class="invalid-feedback">Please add some comments for reviews</div>
       </div>
       <button class="btn btn-outline-dark">Submit</button>
     </form>
