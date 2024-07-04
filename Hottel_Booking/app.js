@@ -35,8 +35,21 @@ app.get("/", (req, res) => {
   res.send("Hi, I am root");
 });
 
+<<<<<<< HEAD
 app.use("/listings", listings);
 app.use("/listings/:id/reviews", reviews); //parent route
+=======
+app.use("/listings",listings);
+app.use("/listings",listings);
+app.use("/listings/:id/reviews",reviews);  //parent route
+
+
+
+
+
+
+
+>>>>>>> a1f105147860a628d9002906fc316339a0006648
 
 //  Error handler  (Middleware)
 
