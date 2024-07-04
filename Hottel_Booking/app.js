@@ -8,8 +8,6 @@ const ejsMate = require("ejs-mate");
 const ExpressError = require("./Utils/ExpressError.js");
 
 
-
-
 const listings = require("./routes/listing.js");
 const reviews = require("./models/review.js");
 
