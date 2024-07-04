@@ -47,7 +47,6 @@ app.all("*", (req, res, next) => {
 
 app.use((err, req, res, next) => {
   let { statusCode, message = "Something went wrong!" } = err;
-  // res.render("error.ejs");
   res.status(statusCode).send(message);
 });
 
