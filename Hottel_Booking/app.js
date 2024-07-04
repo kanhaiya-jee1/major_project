@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
   res.send("Hi, I am root");
 });
 
-
+app.use("/listings",listings);
 app.use("/listings",listings);
 app.use("/listings/:id/reviews",reviews);  //parent route
 
