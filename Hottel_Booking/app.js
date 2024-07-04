@@ -8,7 +8,7 @@ const ejsMate = require("ejs-mate");
 const ExpressError = require("./Utils/ExpressError.js");
 
 const listings = require("./routes/listing.js");
-const reviews = require("./models/review.js");
+const reviews = require("./routes/review.js");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
