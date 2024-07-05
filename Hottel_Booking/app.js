@@ -7,6 +7,9 @@ const ejsMate = require("ejs-mate");
 const ExpressError = require("./Utils/ExpressError.js");
 const session = require("express-session");
 const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require ("passport-local");
+const User = require("./models/user.js");
 
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js");
@@ -50,9 +53,15 @@ app.get("/", (req, res) => {
   res.send("Hi, I am root");
 });
 
-app.use(session(sessionOptions));
+app.use(session(sessionOptions));  // middleware
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 //  Middleware
 
 app.use((req,res,next)=> {
@@ -60,6 +69,18 @@ app.use((req,res,next)=> {
   res.locals.error = req.flash("error");
   next();
 })
+
+//  Static method
+
+app.get("/demouser",async(req, res) =>{
+    let fakeUser = new User ({
+      email: "kanhaiyajee804418@gmail.com",
+      Username: "delta-kanhaiyajee",
+    });
+
+    let registerdUser = await User.register(fakeUser,"helloword"); // check unique or not
+    res.send(registerdUser);
+});
 
 app.use("/listings", listings);
 app.use("/listings/:id/reviews", reviews); //parent route
