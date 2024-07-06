@@ -75,7 +75,7 @@ app.use((req,res,next)=> {
 app.get("/demouser",async(req, res) =>{
     let fakeUser = new User ({
       email: "kanhaiyajee804418@gmail.com",
-      Username: "delta-kanhaiyajee",
+      username: "delta-kanhaiyajee",
     });
 
     let registerdUser = await User.register(fakeUser,"helloword"); // check unique or not
