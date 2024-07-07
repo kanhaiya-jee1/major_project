@@ -8,19 +8,18 @@ const ExpressError = require("./Utils/ExpressError.js");
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
-const LocalStrategy = require ("passport-local");
+const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
-
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
 main()
   .then(() => {
-    console.log("connected to DB");
+    console.log("connected to app DB");
   })
   .catch((err) => {
     console.log(err);
@@ -54,7 +53,7 @@ app.get("/", (req, res) => {
   res.send("Hi, I am root");
 });
 
-app.use(session(sessionOptions));  // middleware
+app.use(session(sessionOptions)); // middleware
 app.use(flash());
 
 app.use(passport.initialize());
@@ -65,12 +64,12 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 //  Middleware
 
-app.use((req,res,next)=> {
+app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   res.locals.currUser = req.user;
   next();
-})
+});
 
 //  Static method
 
@@ -86,7 +85,7 @@ app.use((req,res,next)=> {
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter); //parent route
-app.use("/", userRouter); 
+app.use("/", userRouter);
 //  Error handler  (Middleware)
 
 // Agar koi user koi aise hmare hi domain k kisisi random route k pass request jati h to page nhi hoga (kisi se match nhi hua to hm page not to hm standerd response send krna chate h )
@@ -102,4 +101,3 @@ app.use((err, req, res, next) => {
 app.listen(8080, () => {
   console.log("server is listining to port 8080");
 });
-
