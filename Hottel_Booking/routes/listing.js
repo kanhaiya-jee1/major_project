@@ -41,11 +41,12 @@ router.get(
     const listing = await Listing.findById(id)
       .populate("reviews")
       .populate("owner");
+
     if (!listing) {
       req.flash("error", "Listing you requested for does not exist!");
       res.redirect("/listings");
     }
-    console.log(listing);
+    // console.log(listing);
     res.render("listings/show.ejs", { listing });
   })
 );
