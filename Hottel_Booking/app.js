@@ -1,6 +1,5 @@
-
-if(process.env.NODE_ENV != "production"){
-  require('dotenv').config();
+if (process.env.NODE_ENV != "production") {
+  require("dotenv").config();
 }
 
 const express = require("express");
@@ -20,11 +19,12 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const DB_NAME = process.env.DB_NAME;
+const MONGO_URL = `mongodb://127.0.0.1:27017/${DB_NAME}`;
 
 main()
   .then(() => {
-    console.log("connected to app DB");
+    console.log(`connected to app DB is ${DB_NAME}`);
   })
   .catch((err) => {
     console.log(err);
@@ -75,7 +75,6 @@ app.use((req, res, next) => {
   res.locals.currUser = req.user;
   next();
 });
-
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter); //parent route
