@@ -13,21 +13,12 @@ const upload = multer({storage});
 router
    .route("/")
    .get(WrapAsync(listingController.index))
-//   .post(
-//   isLoggedIn,
-//   validateListing,
-//   WrapAsync(listingController.createListing)
-// );
-
-.post( upload.single('listing[image]'), (req,res)=> {
-  if (req.file) {
-    res.send(req.file)
-    // res.send(`File uploaded successfully: <a href="${req.file.path}" target="_blank">${req.file.filename}</a>`);
-} else {
-    res.send('File upload failed.');
-}
-})
-
+  .post(
+  isLoggedIn,
+  upload.single('listing[image]'),
+  validateListing,
+  WrapAsync(listingController.createListing)
+);
 
 //  New Rout
 router.get("/new", isLoggedIn, listingController.renderNewForm);
