@@ -1,5 +1,6 @@
+
 if(process.env.NODE_ENV != "production"){
-require('dotenv').config();
+  require('dotenv').config();
 }
 
 const express = require("express");
@@ -75,17 +76,6 @@ app.use((req, res, next) => {
   next();
 });
 
-//  Static method
-
-// app.get("/demouser",async(req, res) =>{
-//     let fakeUser = new User ({
-//       email: "kanhaiyajee804418@gmail.com",
-//       username: "delta-kanhaiyajee",
-//     });
-
-//     let registerdUser = await User.register(fakeUser,"helloword"); // check unique or not
-//     res.send(registerdUser);
-// });
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter); //parent route

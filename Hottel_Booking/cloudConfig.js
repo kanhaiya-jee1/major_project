@@ -10,10 +10,15 @@ cloudinary.config({
 
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
-    params: {
-      folder: 'wanderlust_DEV',
-      allowerdFormats: ["png", "jpg","jpeg"],
-    },
+  //   params: {
+  //     folder: 'uploads', // Optional folder name on Cloudinary
+  //     format: async (req, file) => 'png', // Supports promises as well
+  //     public_id: (req, file) => Date.now() + '-' + file.originalname
+  // }
+  params: {
+    folder: 'wanderlust_DEV',
+    allowerdFormats: ["png", "jpg","jpeg"],
+  },
   });
 
   module.exports = {

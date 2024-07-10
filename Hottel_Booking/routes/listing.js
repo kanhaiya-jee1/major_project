@@ -8,7 +8,7 @@ const listingController = require("../controllers/listings.js");
 
 const multer  = require('multer');
 const {storage} = require("../cloudConfig.js");
-const upload = multer({ storage });
+const upload = multer({storage});
 
 router
    .route("/")
@@ -19,9 +19,15 @@ router
 //   WrapAsync(listingController.createListing)
 // );
 
-.post(upload.single('listing[image]'), (req , res) => {
-  res.send(req.file);
-});
+.post( upload.single('listing[image]'), (req , res)=> {
+  if (req.file) {
+    res.send(req.file)
+    // res.send(`File uploaded successfully: <a href="${req.file.path}" target="_blank">${req.file.filename}</a>`);
+} else {
+    res.send('File upload failed.');
+}
+})
+
 
 //  New Rout
 router.get("/new", isLoggedIn, listingController.renderNewForm);
