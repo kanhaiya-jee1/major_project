@@ -19,7 +19,7 @@ router
 //   WrapAsync(listingController.createListing)
 // );
 
-.post( upload.single('listing[image]'), (req , res)=> {
+.post( upload.single('listing[image]'), (req,res)=> {
   if (req.file) {
     res.send(req.file)
     // res.send(`File uploaded successfully: <a href="${req.file.path}" target="_blank">${req.file.filename}</a>`);
