@@ -1,0 +1,19 @@
+{
+    "_id": {
+      "$oid": "668e9cc2186f4978fea939c0"
+    },
+    "title": "yoyo",
+    "description": "        ghjkl",
+    "image": {
+      "url": "https://res.cloudinary.com/dpkcgl8al/image/upload/v1720622274/wanderlust_DEV/wiiibbxzvjva09hi9afl.jpg",
+      "filename": "wanderlust_DEV/wiiibbxzvjva09hi9afl"
+    },
+    "price": 5678,
+    "location": "New York",
+    "country": "America",
+    "reviews": [],
+    "owner": {
+      "$oid": "668e9c99186f4978fea939b7"
+    },
+    "__v": 0
+  }
