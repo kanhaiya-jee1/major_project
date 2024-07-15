@@ -49,7 +49,7 @@ app.use(express.static(path.join(__dirname, "/public/css")));
 const store = MongoStore.create({
   mongoUrl: MONGO_URL ,
   crypto:{
-    secret: "mysupersecretcode"
+    secret: process.env.MONGODB_SECRET
   },
   touchAfter: 24 * 3600,
 });
